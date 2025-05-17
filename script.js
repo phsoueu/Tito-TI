@@ -126,6 +126,16 @@ function getResposta(pergunta) {
     }
   }
 
+  for (let i = 0; i < respostas.length; i++) {
+  if (respostas[i].pergunta.test(pergunta)) {
+    if (Math.random() < 0.15) {
+      return "To ocupado , abre um chamado";
+    }
+    return respostas[i].resposta;
+  }
+}
+
+
   // Se não souber responder
   return 'Vish , nao sei te responder , tem que olhar no GLPI. \nSe tiver mais duvida digita um "help"';
 }
