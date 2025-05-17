@@ -75,8 +75,20 @@ function respostaCumprimento(user) {
   if (user.toLowerCase() === 'kotinda') {
     return "Olá, chefe Kotinda! Como posso servi-lo hoje com toda minha dedicação e respeito?";
   }
+  if (user.toLowerCase() === 'terkelli') {
+    return "Opa , o pegador de recepcionista tá na área! Como posso ajudar?";
+  }
   if (user.toLowerCase() === 'jhonny') {
     return "Fala, Jhonny! O menino do estoque tá na área. O que precisa hoje?";
+  }
+  if (user.toLowerCase() === 'willian') {
+    return "Fala Willian!";
+  }
+  if (user.toLowerCase() === 'humberto') {
+    return "Ué me clonaram? O que você quer?";
+  }
+  if (user.toLowerCase() === 'matheus') {
+    return "Fala novato , quer o que ?";
   }
   return "Opa , Tito TI na area!";
 }
@@ -103,7 +115,7 @@ function getResposta(pergunta) {
     }
   }
 
-  // Resposta aleatória preguiçosa com 30% de chance
+  // Resposta aleatória preguiçosa com 10% de chance
   if (Math.random() < 0.1) {
     return "Abre um chamado rapaiz!!";
   }
@@ -190,25 +202,3 @@ chatForm.addEventListener('submit', function (e) {
   }
 });
 
-// Resposta padrão quando não encontrar resposta
-function getHelpList() {
-  return respostas
-    .filter(r => typeof r.pergunta === 'object' && r.pergunta instanceof RegExp)
-    .map(r => '- ' + r.pergunta.toString().replace(/\/|\^|\$/g, ''))
-    .join('\n');
-}
-
-// Sobrescreve getResposta para adicionar fallback customizado
-const originalGetResposta = getResposta;
-getResposta = function(pergunta) {
-  const resposta = originalGetResposta(pergunta);
-  if (resposta !== undefined) {
-    return resposta;
-  }
-  // Se não encontrou resposta, retorna mensagem padrão + help
-  setTimeout(() => {
-    addMessage('Case tenha duvidas utilize o comando "Help"', 'bot');
-    addMessage('Perguntas pré-programadas:\n' + getHelpList(), 'bot');
-  }, 800);
-  return 'Vish , isso ai eu nao sei , tem que olhar no GLPI';
-};
