@@ -127,7 +127,7 @@ function getResposta(pergunta) {
   }
 
   // Se não souber responder
-  return 'Vish , nao sei , tem que olhar no GLPI. Se tiver mais duvida digita um "help"';
+  return 'Vish , nao sei te responder , tem que olhar no GLPI. \nSe tiver mais duvida digita um "help"';
 }
 
 const titoImage = 'Imagem do WhatsApp de 2025-05-16 à(s) 20.07.35_6df01599.jpg';
