@@ -61,7 +61,7 @@ const respostas = [
   { pergunta: /tito.*lindo/i, resposta: "Você é muito gentil! Mas sou só um assistente virtual." },
   { pergunta: /tito.*inteligente/i, resposta: "Obrigado! Estou sempre aprendendo para ajudar melhor." },
   { pergunta: /tito.*inteligente|tito.*gato|tito.*lindo|tito.*safado/i, resposta: "Você é muito gentil!"},
-  { pergunta: /Qual seu cargo?/i, resposta: "Sou o dono do TI" },0
+  { pergunta: /Qual seu cargo?/i, resposta: "Sou o dono do TI" },
 ];
 
 // Respostas para cumprimentos simples
@@ -92,9 +92,21 @@ function respostaCumprimento(user) {
   return "Opa , Tito TI na area!";
 }
 
+// Função que retorna a lista de perguntas conhecidas
+function listaPerguntasConhecidas() {
+  return "Aqui estão os tipos de perguntas que eu entendo:\n" + 
+    respostas.map(r => `- ${r.pergunta}`).join('\n') +
+    '\n\nDigite uma dessas ou pergunte normalmente!';
+}
+
 // Função para obter resposta conforme pergunta
 function getResposta(pergunta) {
-  pergunta = pergunta.toLowerCase();
+  pergunta = pergunta.toLowerCase().trim();
+
+  // Resposta para o comando help
+  if (pergunta === "help") {
+    return listaPerguntasConhecidas();
+  }
 
   // Verificar se é cumprimento
   for (const regex of cumprimentos) {
@@ -114,12 +126,8 @@ function getResposta(pergunta) {
     }
   }
 
-  // Resposta aleatória preguiçosa com 10% de chance
-  if (Math.random() < 0.1) {
-    return "Abre um chamado rapaiz!!";
-  }
-
-  return "Abre um chamado, alguma hora eu vejo";
+  // Se não souber responder
+  return 'Vish , nao sei , tem que olhar no GLPI. Se tiver mais duvida digita um "help"';
 }
 
 const titoImage = 'Imagem do WhatsApp de 2025-05-16 à(s) 20.07.35_6df01599.jpg';
@@ -200,4 +208,3 @@ chatForm.addEventListener('submit', function (e) {
     }, 600);
   }
 });
-
