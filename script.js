@@ -56,6 +56,7 @@ const respostas = [
   { pergunta: /windows.*não atualizando/i, resposta: "Tente reiniciar o computador e verifique se há alguma atualização pendente. Caso o erro persista, podemos analisar mais a fundo." },
   { pergunta: /software.*instalar/i, resposta: "Você pode solicitar a instalação pelo portal de TI ou abrir um chamado caso o software não esteja disponível no catálogo." },
   { pergunta: /como melhorar.*performance do computador/i, resposta: "Recomendo fechar os programas em segundo plano, atualizar o sistema e verificar se há vírus ou problemas de hardware." },
+  { pergunta: /Ainn tito/i, resposta: "Me encontra no estoque safado >:)" },
 ];
 
 // Respostas para cumprimentos simples
