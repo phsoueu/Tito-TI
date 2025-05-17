@@ -9,7 +9,6 @@ const userImages = {
   "matheus": "matheus.jpg",
   "jhonny": "jhonny.jpg",
   "humberto": "tito.jpg",
-  "tito": "tito.jpg"
 };
 
 // Respostas simuladas gerais
