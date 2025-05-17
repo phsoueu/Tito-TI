@@ -61,7 +61,7 @@ const respostas = [
   { pergunta: /tito.*gato/i, resposta: "Agradeço o elogio, mas sou só um assistente virtual!" },
   { pergunta: /tito.*lindo/i, resposta: "Você é muito gentil! Mas sou só um assistente virtual." },
   { pergunta: /tito.*inteligente/i, resposta: "Obrigado! Estou sempre aprendendo para ajudar melhor." },
-  { pergunta: /tito.*inteligente|tito.*gato|tito.*lindo|tito.*safado/i, resposta: "Você é muito gentil!" },
+  { pergunta: /tito.*inteligente|tito.*gato|tito.*lindo|tito.*safado/i, resposta: "Você é muito gentil!"},
   { pergunta: /Qual seu cargo?/i, resposta: "Sou o dono do TI" },0
 ];
 
@@ -108,29 +108,7 @@ function getResposta(pergunta) {
     return "Ah, eu não sei como resolver isso... Melhor abrir um chamado para o suporte técnico!";
   }
 
-  // Resposta padrão personalizada com lista de comandos disponíveis
-  let comandos = respostas.map(r => {
-    // Pegar o padrão regex como string e limpar um pouco para mostrar ao usuário
-    let pattern = r.pergunta.toString();
-
-    // Remover os delimitadores e flags do regex para exibir mais limpo
-    pattern = pattern.replace(/^\/|\/[gimsuy]*$/g, '');
-
-    // Retirar grupos e caracteres especiais para ficar mais legível (simples, não perfeito)
-    pattern = pattern.replace(/\(.*?\)/g, '');
-    pattern = pattern.replace(/\|/g, ', ');
-    pattern = pattern.replace(/\.\*/g, '');
-    pattern = pattern.replace(/\\./g, '.');
-    pattern = pattern.replace(/\\s/g, ' ');
-    pattern = pattern.replace(/\?/g, '');
-    pattern = pattern.replace(/\^/g, '');
-    pattern = pattern.replace(/\$/g, '');
-    pattern = pattern.trim();
-
-    return `- ${pattern}`;
-  });
-
-  return `Vish , isso ai eu nao sei , tem que olhar no GLPI\nSe tiver mais duvidas utilize os comandos :\n${comandos.join('\n')}`;
+  return "Abre um chamado, alguma hora eu vejo";
 }
 
 const titoImage = 'Imagem do WhatsApp de 2025-05-16 à(s) 20.07.35_6df01599.jpg';
