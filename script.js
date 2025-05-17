@@ -57,6 +57,12 @@ const respostas = [
   { pergunta: /software.*instalar/i, resposta: "Você pode solicitar a instalação pelo portal de TI ou abrir um chamado caso o software não esteja disponível no catálogo." },
   { pergunta: /como melhorar.*performance do computador/i, resposta: "Recomendo fechar os programas em segundo plano, atualizar o sistema e verificar se há vírus ou problemas de hardware." },
   { pergunta: /Ainn tito/i, resposta: "Me encontra no estoque safado >:)" },
+  { pergunta: /tito.*safado/i, resposta: "Só se for você, safadinho(a)!" },
+  { pergunta: /tito.*gato/i, resposta: "Agradeço o elogio, mas sou só um assistente virtual!" },
+  { pergunta: /tito.*lindo/i, resposta: "Você é muito gentil! Mas sou só um assistente virtual." },
+  { pergunta: /tito.*inteligente/i, resposta: "Obrigado! Estou sempre aprendendo para ajudar melhor." },
+  { pergunta: /tito.*inteligente|tito.*gato|tito.*lindo|tito.*safado/i, resposta: "Você é muito gentil!"},
+  { pergunta: /Qual seu cargo?/i, resposta: "Sou o dono do TI" },0
 ];
 
 // Respostas para cumprimentos simples
