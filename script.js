@@ -78,7 +78,7 @@ function respostaCumprimento(user) {
   if (user.toLowerCase() === 'jhonny') {
     return "Fala, Jhonny! O menino do estoque tá na área. O que precisa hoje?";
   }
-  return "Olá! Como posso ajudar você hoje?";
+  return "Opa , TiTo Ti Na area!";
 }
 
 // Função para obter resposta conforme pergunta
@@ -104,10 +104,8 @@ function getResposta(pergunta) {
   }
 
   // Resposta aleatória preguiçosa com 30% de chance
-  if (Math.random() < 0.3) {
-    return "Ah, eu não sei como resolver isso... Melhor abrir um chamado para o suporte técnico!";
-  }
-
+  if (Math.random() < 0.15) {
+ 
   return "Abre um chamado, alguma hora eu vejo";
 }
 
