@@ -1,0 +1,325 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0a0a0a; /* preto total */
+  color: #d6caff; /* roxo claro, legível */
+}
+
+/* Intro screen */
+#introScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #1b0033, #330066);
+  color: #e0c3fc;
+  text-align: center;
+  flex-direction: column;
+  font-weight: 600;
+  letter-spacing: 1.1px;
+  text-shadow: 0 0 8px #7b4de8;
+}
+
+.intro-box {
+  background: rgba(55, 0, 99, 0.8);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 25px #9a4dff;
+  border: 2px solid #7b4de8;
+  width: 320px;
+}
+
+.intro-box input {
+  padding: 12px;
+  margin-top: 15px;
+  width: 100%;
+  border-radius: 8px;
+  border: 2px solid #7b4de8;
+  background-color: #120042;
+  color: #e0c3fc;
+  font-size: 1.05em;
+  transition: border-color 0.3s ease;
+}
+
+.intro-box input:focus {
+  outline: none;
+  border-color: #b76fff;
+  box-shadow: 0 0 10px #b76fff;
+}
+
+#startChatBtn {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background-color: #7b4de8;
+  color: #f0e9ff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.15em;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 15px #b76fff;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#startChatBtn:hover {
+  background-color: #b76fff;
+  box-shadow: 0 0 25px #d8b9ff;
+}
+
+/* Chat interface */
+#chatInterface {
+  display: none; /* Começa escondido */
+  flex-direction: column;
+  height: 100vh;
+  background: linear-gradient(180deg, #000000 0%, #1a0033 100%);
+  color: #d6caff;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+/* Header */
+.chat-header {
+  background-color: #4a238d;
+  padding: 20px;
+  color: #e0d7ff;
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: 900;
+  text-shadow: 0 0 10px #b76fff;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 2px;
+}
+
+/* Chat container e box */
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #7b4de8 #1a0033;
+}
+
+#chatBox {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-bottom: 20px;
+}
+
+/* Mensagens */
+.message {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column; /* imagem + nome em cima da bolha */
+  gap: 10px;
+  font-family: 'Segoe UI Mono', Consolas, monospace;
+}
+
+.user {
+  align-self: flex-end;
+  text-align: right;
+}
+
+.bot {
+  align-self: flex-start;
+  text-align: left;
+}
+
+/* Informação do remetente */
+.sender-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  filter: drop-shadow(0 0 2px #7b4de8);
+}
+
+.sender-info.bot {
+  justify-content: flex-start;
+}
+
+.sender-info.user {
+  justify-content: flex-end;
+}
+
+/* Nome */
+.sender-name {
+  font-size: 0.9em;
+  font-weight: 700;
+  color: #b9a1ff;
+  margin-bottom: 3px;
+  text-shadow: 0 0 5px #b76fff;
+  user-select: none;
+  letter-spacing: 0.5px;
+}
+
+/* Nome do usuário alinhado à direita com cor roxo vibrante */
+.sender-info.user .sender-name {
+  color: #d8b9ff;
+  order: 1; /* nome antes da imagem */
+  margin-left: 15px;
+  text-shadow: 0 0 7px #d8b9ff;
+}
+
+/* Nome do bot com roxo acinzentado */
+.sender-info.bot .sender-name {
+  color: #9a7efb;
+  order: 2;
+  text-shadow: 0 0 4px #9a7efb;
+}
+
+/* Imagens */
+.sender-info img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 10px #7b4de8;
+  border: 2px solid #b76fff;
+  transition: transform 0.2s ease;
+}
+
+.sender-info img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #d8b9ff;
+}
+
+.sender-info.bot img {
+  width: 64px;
+  height: 64px;
+  margin-left: 0;
+  order: 1; /* imagem antes do nome */
+  box-shadow: 0 0 15px #9a7efb;
+  border-color: #9a7efb;
+}
+
+.sender-info.user img {
+  order: 2; /* imagem depois do nome */
+  border-color: #d8b9ff;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Bolhas de mensagem */
+.bubble {
+  padding: 18px 25px;
+  border-radius: 20px;
+  font-size: 1.15em;
+  line-height: 1.6;
+  box-shadow: 0 0 12px rgba(183, 111, 255, 0.5);
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  max-width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+/* Bolha usuário */
+.user .bubble {
+  background: linear-gradient(135deg, #7b4de8, #b76fff);
+  color: #0a0a0a;
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 0 18px #b76fff;
+}
+
+/* Bolha bot */
+.bot .bubble {
+  background: linear-gradient(135deg, #23004e, #4a238d);
+  color: #e0c3fc;
+  border-bottom-left-radius: 6px;
+  box-shadow: 0 0 15px #9a7efb;
+  font-family: 'Segoe UI', monospace;
+  font-weight: 600;
+}
+
+/* Input area */
+#chatForm {
+  display: flex;
+  padding: 18px;
+  border-top: 1px solid #330066;
+  background-color: #15002a;
+}
+
+#userInput {
+  flex: 1;
+  padding: 15px;
+  border: 2px solid #7b4de8;
+  border-radius: 10px;
+  font-size: 1.1em;
+  background-color: #1e0033;
+  color: #d6caff;
+  font-family: 'Segoe UI Mono', monospace;
+  transition: border-color 0.3s ease;
+}
+
+#userInput::placeholder {
+  color: #9a7efb;
+}
+
+#userInput:focus {
+  outline: none;
+  border-color: #d8b9ff;
+  box-shadow: 0 0 8px #d8b9ff;
+}
+
+#chatForm button {
+  padding: 15px 28px;
+  margin-left: 15px;
+  background-color: #7b4de8;
+  color: #f0e9ff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.15em;
+  font-weight: 700;
+  box-shadow: 0 0 15px #b76fff;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#chatForm button:hover {
+  background-color: #b76fff;
+  box-shadow: 0 0 25px #d8b9ff;
+}
+
+/* Scroll barra de rolagem estilizada */
+#chatBox::-webkit-scrollbar {
+  width: 10px;
+}
+
+#chatBox::-webkit-scrollbar-track {
+  background: #15002a;
+  border-radius: 10px;
+}
+
+#chatBox::-webkit-scrollbar-thumb {
+  background: #7b4de8;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #b76fff inset;
+}
+
+/* Firefox */
+#chatBox {
+  scrollbar-width: thin;
+  scrollbar-color: #7b4de8 #15002a;
+}
+
+/* Footer */
+.chat-footer {
+  background-color: #1b0033;
+  color: #b9a1ff;
+  text-align: center;
+  padding: 14px;
+  font-size: 0.9em;
+  font-family: 'Segoe UI Mono', monospace;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 8px #7b4de8;
+  user-select: none;
+}

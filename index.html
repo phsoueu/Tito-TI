@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tito Bot - Service Desk</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Estilo para destacar o texto dos criadores no rodapé */
+    .creators {
+      margin-top: 8px;
+      font-weight: bold;
+      color: #9b59b6; /* tom roxo destacado */
+      text-shadow: 0 0 5px #8e44ad;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="intro-screen" id="introScreen">
+    <div class="intro-box">
+      <h1>Bem-vindo ao Tito Bot - Service Desk</h1>
+      <p>Por favor, selecione seu nome para começarmos:</p>
+      <select id="userNameInput" required>
+        <option value="" disabled selected>Selecione seu nome</option>
+        <option value="terkelli">Terkelli</option>
+        <option value="patuci">Patuci</option>
+        <option value="willian">Willian</option>
+        <option value="kotinda">Kotinda</option>
+        <option value="matheus">Matheus</option>
+        <option value="jhonny">Jhonny</option>
+        <option value="humberto">Humberto</option>
+        <option value="tito">Tito</option>
+      </select>
+      <button id="startChatBtn">Iniciar Chat</button>
+    </div>
+  </div>
+
+  <div class="chat-interface" id="chatInterface" style="display: none;">
+    <header class="chat-header">
+      <h2>Tito Bot - Atendimento TI</h2>
+    </header>
+
+    <div class="chat-container">
+      <div class="chat-box" id="chatBox"></div>
+      <form class="input-area" id="chatForm" autocomplete="off">
+        <input type="text" id="userInput" placeholder="Descreva seu problema..." required />
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+
+    <footer class="chat-footer">
+      <p>© 2025 Tito TI - Service Desk Corporativo</p>
+      <p class="creators">Criado por <strong>Pedro e Cirelli</strong></p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
