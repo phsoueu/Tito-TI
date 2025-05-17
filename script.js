@@ -62,7 +62,7 @@ const respostas = [
   { pergunta: /tito.*lindo/i, resposta: "Você é muito gentil! Mas sou só um assistente virtual." },
   { pergunta: /tito.*inteligente/i, resposta: "Obrigado! Estou sempre aprendendo para ajudar melhor." },
   { pergunta: /tito.*inteligente|tito.*gato|tito.*lindo|tito.*safado/i, resposta: "Você é muito gentil!" },
-  { pergunta: /Qual seu cargo?/i, resposta: "Sou o dono do TI" }
+  { pergunta: /Qual seu cargo?/i, resposta: "Sou o dono do TI" },0
 ];
 
 // Respostas para cumprimentos simples
@@ -81,30 +81,7 @@ function respostaCumprimento(user) {
   return "Olá! Como posso ajudar você hoje?";
 }
 
-// Função para listar comandos de ajuda (perguntas cadastradas)
-function listarComandos() {
-  return respostas.map(item => {
-    // Extrair texto simples da regex para mostrar
-    let texto = item.pergunta.toString();
-    texto = texto
-      .replace(/\/|\\/g, '') // tira / e \
-      .replace(/\(\.\*\)/g, '') // tira (.*)
-      .replace(/\|\?/g, '') // tira |?
-      .replace(/\[\^?[\w\s]*\]/g, '') // tira classes de caracteres
-      .replace(/\^/g, '')
-      .replace(/\$/g, '')
-      .replace(/\?/g, '')
-      .replace(/i/g, '')
-      .trim();
-
-    // Limitar tamanho para evitar ficar enorme
-    if (texto.length > 50) texto = texto.slice(0, 47) + '...';
-
-    return '- ' + texto;
-  }).join('\n');
-}
-
-// Função para obter resposta conforme pergunta (modificada)
+// Função para obter resposta conforme pergunta
 function getResposta(pergunta) {
   pergunta = pergunta.toLowerCase();
 
@@ -126,8 +103,34 @@ function getResposta(pergunta) {
     }
   }
 
-  // Resposta padrão para pergunta não reconhecida, mostrando lista de comandos
-  return "Vish, isso aí eu não sei, tem que olhar no GLPI.\nSe tiver mais dúvidas, utilize os comandos:\n" + listarComandos();
+  // Resposta aleatória preguiçosa com 30% de chance
+  if (Math.random() < 0.3) {
+    return "Ah, eu não sei como resolver isso... Melhor abrir um chamado para o suporte técnico!";
+  }
+
+  // Resposta padrão personalizada com lista de comandos disponíveis
+  let comandos = respostas.map(r => {
+    // Pegar o padrão regex como string e limpar um pouco para mostrar ao usuário
+    let pattern = r.pergunta.toString();
+
+    // Remover os delimitadores e flags do regex para exibir mais limpo
+    pattern = pattern.replace(/^\/|\/[gimsuy]*$/g, '');
+
+    // Retirar grupos e caracteres especiais para ficar mais legível (simples, não perfeito)
+    pattern = pattern.replace(/\(.*?\)/g, '');
+    pattern = pattern.replace(/\|/g, ', ');
+    pattern = pattern.replace(/\.\*/g, '');
+    pattern = pattern.replace(/\\./g, '.');
+    pattern = pattern.replace(/\\s/g, ' ');
+    pattern = pattern.replace(/\?/g, '');
+    pattern = pattern.replace(/\^/g, '');
+    pattern = pattern.replace(/\$/g, '');
+    pattern = pattern.trim();
+
+    return `- ${pattern}`;
+  });
+
+  return `Vish , isso ai eu nao sei , tem que olhar no GLPI\nSe tiver mais duvidas utilize os comandos :\n${comandos.join('\n')}`;
 }
 
 const titoImage = 'Imagem do WhatsApp de 2025-05-16 à(s) 20.07.35_6df01599.jpg';
@@ -192,18 +195,19 @@ function addMessage(text, sender) {
 
   msgDiv.appendChild(bubble);
   chatBox.appendChild(msgDiv);
-
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// Evento ao enviar mensagem pelo formulário
-chatForm.addEventListener('submit', e => {
+// Envio da pergunta do usuário
+chatForm.addEventListener('submit', function (e) {
   e.preventDefault();
   const pergunta = userInput.value.trim();
-  if (pergunta !== "") {
+  if (pergunta) {
     addMessage(pergunta, 'user');
-    const resposta = getResposta(pergunta);
-    addMessage(resposta, 'bot');
-    userInput.value = "";
+    userInput.value = '';
+    setTimeout(() => {
+      const resposta = getResposta(pergunta);
+      addMessage(resposta, 'bot');
+    }, 600);
   }
 });
