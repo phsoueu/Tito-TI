@@ -81,7 +81,7 @@ function respostaCumprimento(user) {
     return "Fala, Jhonny! O menino do estoque tá na área. O que precisa hoje?";
   }
   if (user.toLowerCase() === 'willian') {
-    return "Fala Willian!";
+    return "Fala Will!";
   }
   if (user.toLowerCase() === 'humberto') {
     return "Ué me clonaram? O que você quer?";
